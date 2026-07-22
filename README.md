@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 ﻿# NVIDIA AI Workflow Studio
 
 NVIDIA AI Workflow Studio is a retrieval-augmented generation (RAG) platform that lets users upload their own documents and ask natural-language questions against that content, receiving grounded, cited answers powered by NVIDIA NIM inference endpoints.
