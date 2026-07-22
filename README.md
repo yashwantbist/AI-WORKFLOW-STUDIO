@@ -50,10 +50,3 @@ nvidia-ai-workflow-studio/
 
 ---
 
-## Responsible AI Commitment
-
-This project follows NVIDIA responsible-AI principles.
-Before writing application code, the team defines what the system *should not do*, documents known risks with concrete test criteria, and labels every unimplemented control as **planned** so that the gap between design intent and reality is always visible.
-=======
-# Trustworthy-AI-foundation
->>>>>>> b18394f68fecec63aa7466614ed4437df2a26217
