@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tokenization Explorer</title>
+  <style>
+    body {
+      max-width: 960px;
+      margin: 40px auto;
+      padding: 0 20px;
+      font-family: system-ui, sans-serif;
+      line-height: 1.5;
+      background: #f7f7f8;
+      color: #202124;
+    }
+    .panel {
+      background: white;
+      border: 1px solid #dedede;
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .tokens {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .token {
+      display: inline-flex;
+      flex-direction: column;
+      padding: 8px 10px;
+      border: 1px solid #b8b8b8;
+      border-radius: 10px;
+      background: #eef2ff;
+    }
+    .token-text {
+      font-family: ui-monospace, monospace;
+      font-weight: 700;
+    }
+    .token-id {
+      font-size: 0.75rem;
+      color: #555;
+    }
+    code {
+      overflow-wrap: anywhere;
+    }
+  </style>
+</head>
+<body>
+  <main class="panel">
+    <h1>Tokenization Explorer</h1>
+    <p><strong>Strategy:</strong> word-punctuation</p>
+    <p><strong>Original text:</strong> <code>LLMs read tokens, not words.</code></p>
+    <div class="tokens"><span class="token"><span class="token-text">LLMs</span><span class="token-id">ID 4</span></span>
+<span class="token"><span class="token-text">read</span><span class="token-id">ID 6</span></span>
+<span class="token"><span class="token-text">tokens</span><span class="token-id">ID 7</span></span>
+<span class="token"><span class="token-text">,</span><span class="token-id">ID 2</span></span>
+<span class="token"><span class="token-text">not</span><span class="token-id">ID 5</span></span>
+<span class="token"><span class="token-text">words</span><span class="token-id">ID 8</span></span>
+<span class="token"><span class="token-text">.</span><span class="token-id">ID 3</span></span></div>
+    <p><strong>Token count:</strong> 7</p>
+    <p><strong>Local vocabulary size:</strong> 9</p>
+    <p>
+      <strong>Context:</strong>
+      7/128
+      (5.47%) — Fits inside the context window
+    </p>
+  </main>
+</body>
+</html>
