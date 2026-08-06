@@ -1,0 +1,4 @@
+#vector database
+faiss-cpu==1.15.0
+numpy>=1.26,<3
+pytest>=8.2,<9

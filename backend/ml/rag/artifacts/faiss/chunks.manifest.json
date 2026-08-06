@@ -1,0 +1,18 @@
+{
+  "chunk_count": 8,
+  "chunk_size_words": 80,
+  "dimension": 498,
+  "embedding_model": "SemanticTfidfEmbedder",
+  "files": {
+    "index": "chunks.faiss",
+    "metadata": "chunks.metadata.json"
+  },
+  "hnsw": {
+    "ef_construction": 80,
+    "ef_search": 64,
+    "m": 32
+  },
+  "index_type": "flat",
+  "overlap_words": 15,
+  "schema_version": 1
+}
