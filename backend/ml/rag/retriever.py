@@ -85,9 +85,7 @@ class FaissRetriever:
 
         query_vector = np.asarray(self._embedder.embed(query), dtype=np.float32)
         if np.linalg.norm(query_vector) == 0.0:
-            raise ValueError(
-                "query contains no features known to the fitted embedding model"
-            )
+            return ()
 
         allowed_ids = set(self._metadata_store.matching_ids(filters))
         if not allowed_ids:
