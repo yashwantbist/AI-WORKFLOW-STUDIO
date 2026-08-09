@@ -1,0 +1,70 @@
+"""Load and validate a hand-written RAG evaluation dataset."""
+
+from __future__ import annotations
+
+from dataclasses import dataclass
+import json
+from pathlib import Path
+from typing import Any, Mapping
+
+
+@dataclass(frozen=True)
+class EvaluationCase:
+    case_id: str
+    question: str
+    expected_chunk_ids: tuple[str, ...]
+    reference_answer: str
+    tags: tuple[str, ...] = ()
+
+    def __post_init__(self) -> None:
+        if not self.case_id.strip():
+            raise ValueError("case_id cannot be empty")
+        if not self.question.strip():
+            raise ValueError("question cannot be empty")
+        if not self.expected_chunk_ids:
+            raise ValueError("expected_chunk_ids cannot be empty")
+        if not self.reference_answer.strip():
+            raise ValueError("reference_answer cannot be empty")
+        if len(self.expected_chunk_ids) != len(set(self.expected_chunk_ids)):
+            raise ValueError("expected_chunk_ids must be unique")
+
+    @classmethod
+    def from_dict(cls, value: Mapping[str, Any]) -> "EvaluationCase":
+        return cls(
+            case_id=str(value["case_id"]),
+            question=str(value["question"]),
+            expected_chunk_ids=tuple(
+                str(chunk_id) for chunk_id in value["expected_chunk_ids"]
+            ),
+            reference_answer=str(value["reference_answer"]),
+            tags=tuple(str(tag) for tag in value.get("tags", ())),
+        )
+
+
+@dataclass(frozen=True)
+class EvaluationDataset:
+    name: str
+    description: str
+    cases: tuple[EvaluationCase, ...]
+
+    def __post_init__(self) -> None:
+        if not self.name.strip():
+            raise ValueError("dataset name cannot be empty")
+        if not self.cases:
+            raise ValueError("dataset must contain at least one case")
+        ids = [case.case_id for case in self.cases]
+        if len(ids) != len(set(ids)):
+            raise ValueError("case IDs must be unique")
+
+    @classmethod
+    def load(cls, path: str | Path) -> "EvaluationDataset":
+        path = Path(path)
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        return cls(
+            name=str(payload.get("name", path.stem)),
+            description=str(payload.get("description", "")),
+            cases=tuple(
+                EvaluationCase.from_dict(case)
+                for case in payload["cases"]
+            ),
+        )
