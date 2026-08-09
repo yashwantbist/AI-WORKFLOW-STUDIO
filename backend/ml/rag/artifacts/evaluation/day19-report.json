@@ -1,0 +1,357 @@
+{
+  "answer_f1_review_threshold": 0.2,
+  "cases": [
+    {
+      "answer_metrics": {
+        "citation_count": 0,
+        "context_token_support": 0.3333333333333333,
+        "expected_source_used": true,
+        "reference_token_f1": 0.0,
+        "reference_token_precision": 0.0,
+        "reference_token_recall": 0.0
+      },
+      "case_id": "self-attention-long-range",
+      "expected_chunk_ids": [
+        "transformer-rag-guide-recursive-002"
+      ],
+      "failure_stage": "generation_proxy",
+      "generated_answer": "Demo generation completed from the supplied retrieved context.",
+      "insufficient_context": false,
+      "pipeline_latency_ms": 0.895800010766834,
+      "question": "How does self-attention help a Transformer capture long-range relationships?",
+      "reference_answer": "Self-attention creates direct paths between tokens, helping the model capture long-range dependencies.",
+      "retrieval_latency_ms": 0.8439000230282545,
+      "retrieval_metrics": {
+        "hit_at_k": 1.0,
+        "k": 5,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "reciprocal_rank": 1.0,
+        "retrieval_passed": true
+      },
+      "retrieved": [
+        {
+          "chunk_id": "transformer-rag-guide-recursive-002",
+          "rank": 1,
+          "score": 0.25678762793540955,
+          "text": "Keys describe what each token offers, and values carry the information that will be combined. Attention weights decide how strongly the model should use each value. A sentence can contain relationships between words that are far apart. Self-attention creates direct paths between those words, which helps the model capture long-range dependencies. Multi-head attention repeats this process in parallel so different heads can learn different relationships."
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-001",
+          "rank": 2,
+          "score": 0.15260528028011322,
+          "text": "Introduction to Transformers Transformers process sequences using attention instead of recurrent hidden states. This design lets all tokens be processed in parallel during training. The architecture has become important for language models, vision systems, and multimodal applications. Self-Attention Self-attention lets each token examine other tokens in the same sequence. Queries represent what a token is looking for. Keys describe what each token offers, and values carry the information that will be combined."
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-005",
+          "rank": 3,
+          "score": 0.137618750333786,
+          "text": "relevant document chunks. The retrieved text is added to the model prompt as grounding context. Embedding an entire long document as one vector can hide a small relevant section. Chunking solves this problem by creating several focused retrieval units. A question about self-attention can then retrieve the self-attention section instead of an unrelated discussion about deployment or training."
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-006",
+          "rank": 4,
+          "score": 0.05547099560499191,
+          "text": "can then retrieve the self-attention section instead of an unrelated discussion about deployment or training. Chunk Size and Overlap Small chunks are precise but may lose surrounding explanation. Large chunks contain more context but may combine unrelated ideas. The best size depends on the document style, embedding model, user questions, and available context window."
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-003",
+          "rank": 5,
+          "score": 0.04337353631854057,
+          "text": "dependencies. Multi-head attention repeats this process in parallel so different heads can learn different relationships. Embeddings Before attention can operate, text is tokenized and converted into numeric identifiers. An embedding layer maps every identifier to a dense vector. Similar language patterns can learn related vector representations during training. Positional information is then added because attention alone does not know the order of tokens."
+        }
+      ],
+      "status": "REVIEW",
+      "used_source_ids": [
+        "transformer-rag-guide-recursive-002",
+        "transformer-rag-guide-recursive-001",
+        "transformer-rag-guide-recursive-005"
+      ]
+    },
+    {
+      "answer_metrics": {
+        "citation_count": 0,
+        "context_token_support": 0.3333333333333333,
+        "expected_source_used": true,
+        "reference_token_f1": 0.0,
+        "reference_token_precision": 0.0,
+        "reference_token_recall": 0.0
+      },
+      "case_id": "query-key-value",
+      "expected_chunk_ids": [
+        "transformer-rag-guide-recursive-001"
+      ],
+      "failure_stage": "generation_proxy",
+      "generated_answer": "Demo generation completed from the supplied retrieved context.",
+      "insufficient_context": false,
+      "pipeline_latency_ms": 0.5206000059843063,
+      "question": "What roles do queries, keys, and values play in self-attention?",
+      "reference_answer": "Queries represent what a token is looking for, keys describe what each token offers, and values carry the information that attention combines.",
+      "retrieval_latency_ms": 0.8357999613508582,
+      "retrieval_metrics": {
+        "hit_at_k": 1.0,
+        "k": 5,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "reciprocal_rank": 1.0,
+        "retrieval_passed": true
+      },
+      "retrieved": [
+        {
+          "chunk_id": "transformer-rag-guide-recursive-001",
+          "rank": 1,
+          "score": 0.23501740396022797,
+          "text": "Introduction to Transformers Transformers process sequences using attention instead of recurrent hidden states. This design lets all tokens be processed in parallel during training. The architecture has become important for language models, vision systems, and multimodal applications. Self-Attention Self-attention lets each token examine other tokens in the same sequence. Queries represent what a token is looking for. Keys describe what each token offers, and values carry the information that will be combined."
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-002",
+          "rank": 2,
+          "score": 0.1646600365638733,
+          "text": "Keys describe what each token offers, and values carry the information that will be combined. Attention weights decide how strongly the model should use each value. A sentence can contain relationships between words that are far apart. Self-attention creates direct paths between those words, which helps the model capture long-range dependencies. Multi-head attention repeats this process in parallel so different heads can learn different relationships."
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-005",
+          "rank": 3,
+          "score": 0.12441510707139969,
+          "text": "relevant document chunks. The retrieved text is added to the model prompt as grounding context. Embedding an entire long document as one vector can hide a small relevant section. Chunking solves this problem by creating several focused retrieval units. A question about self-attention can then retrieve the self-attention section instead of an unrelated discussion about deployment or training."
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-006",
+          "rank": 4,
+          "score": 0.0674176961183548,
+          "text": "can then retrieve the self-attention section instead of an unrelated discussion about deployment or training. Chunk Size and Overlap Small chunks are precise but may lose surrounding explanation. Large chunks contain more context but may combine unrelated ideas. The best size depends on the document style, embedding model, user questions, and available context window."
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-003",
+          "rank": 5,
+          "score": 0.03624787926673889,
+          "text": "dependencies. Multi-head attention repeats this process in parallel so different heads can learn different relationships. Embeddings Before attention can operate, text is tokenized and converted into numeric identifiers. An embedding layer maps every identifier to a dense vector. Similar language patterns can learn related vector representations during training. Positional information is then added because attention alone does not know the order of tokens."
+        }
+      ],
+      "status": "REVIEW",
+      "used_source_ids": [
+        "transformer-rag-guide-recursive-001",
+        "transformer-rag-guide-recursive-002",
+        "transformer-rag-guide-recursive-005"
+      ]
+    },
+    {
+      "answer_metrics": {
+        "citation_count": 0,
+        "context_token_support": 0.5,
+        "expected_source_used": true,
+        "reference_token_f1": 0.0,
+        "reference_token_precision": 0.0,
+        "reference_token_recall": 0.0
+      },
+      "case_id": "why-chunk-documents",
+      "expected_chunk_ids": [
+        "transformer-rag-guide-recursive-005"
+      ],
+      "failure_stage": "generation_proxy",
+      "generated_answer": "Demo generation completed from the supplied retrieved context.",
+      "insufficient_context": false,
+      "pipeline_latency_ms": 0.44680002611130476,
+      "question": "Why should a long document be split into chunks before embedding and retrieval?",
+      "reference_answer": "A single vector for a long document can hide a small relevant section, while chunking creates focused retrieval units.",
+      "retrieval_latency_ms": 1.6888999962247908,
+      "retrieval_metrics": {
+        "hit_at_k": 1.0,
+        "k": 5,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "reciprocal_rank": 1.0,
+        "retrieval_passed": true
+      },
+      "retrieved": [
+        {
+          "chunk_id": "transformer-rag-guide-recursive-005",
+          "rank": 1,
+          "score": 0.24711006879806519,
+          "text": "relevant document chunks. The retrieved text is added to the model prompt as grounding context. Embedding an entire long document as one vector can hide a small relevant section. Chunking solves this problem by creating several focused retrieval units. A question about self-attention can then retrieve the self-attention section instead of an unrelated discussion about deployment or training."
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-004",
+          "rank": 2,
+          "score": 0.1658916473388672,
+          "text": "Positional information is then added because attention alone does not know the order of tokens. Retrieval-Augmented Generation Retrieval-Augmented Generation retrieves external knowledge before generating an answer. A user query is embedded, compared with stored vectors, and matched to the most relevant document chunks. The retrieved text is added to the model prompt as grounding context."
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-006",
+          "rank": 3,
+          "score": 0.12720349431037903,
+          "text": "can then retrieve the self-attention section instead of an unrelated discussion about deployment or training. Chunk Size and Overlap Small chunks are precise but may lose surrounding explanation. Large chunks contain more context but may combine unrelated ideas. The best size depends on the document style, embedding model, user questions, and available context window."
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-008",
+          "rank": 4,
+          "score": 0.09500107169151306,
+          "text": "boundary and continues after it. Too much overlap wastes storage and can return repetitive results. Metadata and Citations Every chunk should retain its source document, page range, section name, and stable chunk identifier. Metadata enables filtering, debugging, and citations. A production pipeline may also record timestamps, permissions, language, document type, and checksum information. Well-designed chunking improves retrieval quality before any language model is called. It is therefore both a data-engineering decision and a model-quality decision."
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-003",
+          "rank": 5,
+          "score": 0.07186684012413025,
+          "text": "dependencies. Multi-head attention repeats this process in parallel so different heads can learn different relationships. Embeddings Before attention can operate, text is tokenized and converted into numeric identifiers. An embedding layer maps every identifier to a dense vector. Similar language patterns can learn related vector representations during training. Positional information is then added because attention alone does not know the order of tokens."
+        }
+      ],
+      "status": "REVIEW",
+      "used_source_ids": [
+        "transformer-rag-guide-recursive-005",
+        "transformer-rag-guide-recursive-004",
+        "transformer-rag-guide-recursive-006"
+      ]
+    },
+    {
+      "answer_metrics": {
+        "citation_count": 0,
+        "context_token_support": 0.5,
+        "expected_source_used": true,
+        "reference_token_f1": 0.10526315789473684,
+        "reference_token_precision": 0.16666666666666666,
+        "reference_token_recall": 0.07692307692307693
+      },
+      "case_id": "chunk-overlap",
+      "expected_chunk_ids": [
+        "transformer-rag-guide-recursive-007"
+      ],
+      "failure_stage": "generation_proxy",
+      "generated_answer": "Demo generation completed from the supplied retrieved context.",
+      "insufficient_context": false,
+      "pipeline_latency_ms": 0.3819999983534217,
+      "question": "Why is overlap useful between adjacent document chunks?",
+      "reference_answer": "Overlap copies some text into the next chunk so an idea crossing a boundary keeps surrounding context.",
+      "retrieval_latency_ms": 0.33000000985339284,
+      "retrieval_metrics": {
+        "hit_at_k": 1.0,
+        "k": 5,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "reciprocal_rank": 0.25,
+        "retrieval_passed": true
+      },
+      "retrieved": [
+        {
+          "chunk_id": "transformer-rag-guide-recursive-006",
+          "rank": 1,
+          "score": 0.14068493247032166,
+          "text": "can then retrieve the self-attention section instead of an unrelated discussion about deployment or training. Chunk Size and Overlap Small chunks are precise but may lose surrounding explanation. Large chunks contain more context but may combine unrelated ideas. The best size depends on the document style, embedding model, user questions, and available context window."
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-005",
+          "rank": 2,
+          "score": 0.13226377964019775,
+          "text": "relevant document chunks. The retrieved text is added to the model prompt as grounding context. Embedding an entire long document as one vector can hide a small relevant section. Chunking solves this problem by creating several focused retrieval units. A question about self-attention can then retrieve the self-attention section instead of an unrelated discussion about deployment or training."
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-004",
+          "rank": 3,
+          "score": 0.1320967674255371,
+          "text": "Positional information is then added because attention alone does not know the order of tokens. Retrieval-Augmented Generation Retrieval-Augmented Generation retrieves external knowledge before generating an answer. A user query is embedded, compared with stored vectors, and matched to the most relevant document chunks. The retrieved text is added to the model prompt as grounding context."
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-007",
+          "rank": 4,
+          "score": 0.10570414364337921,
+          "text": "best size depends on the document style, embedding model, user questions, and available context window. Overlap copies a small amount of text from one chunk into the next. This helps when an important definition begins near the end of one boundary and continues after it. Too much overlap wastes storage and can return repetitive results."
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-002",
+          "rank": 5,
+          "score": 0.10355981439352036,
+          "text": "Keys describe what each token offers, and values carry the information that will be combined. Attention weights decide how strongly the model should use each value. A sentence can contain relationships between words that are far apart. Self-attention creates direct paths between those words, which helps the model capture long-range dependencies. Multi-head attention repeats this process in parallel so different heads can learn different relationships."
+        }
+      ],
+      "status": "REVIEW",
+      "used_source_ids": [
+        "transformer-rag-guide-recursive-006",
+        "transformer-rag-guide-recursive-005",
+        "transformer-rag-guide-recursive-004",
+        "transformer-rag-guide-recursive-007",
+        "transformer-rag-guide-recursive-002"
+      ]
+    },
+    {
+      "answer_metrics": {
+        "citation_count": 0,
+        "context_token_support": 0.16666666666666666,
+        "expected_source_used": true,
+        "reference_token_f1": 0.0,
+        "reference_token_precision": 0.0,
+        "reference_token_recall": 0.0
+      },
+      "case_id": "metadata-citations",
+      "expected_chunk_ids": [
+        "transformer-rag-guide-recursive-008"
+      ],
+      "failure_stage": "generation_proxy",
+      "generated_answer": "Demo generation completed from the supplied retrieved context.",
+      "insufficient_context": false,
+      "pipeline_latency_ms": 0.42260001646354795,
+      "question": "What metadata should a chunk keep so a RAG system can trace and cite its source?",
+      "reference_answer": "Each chunk should retain its source document, page range, section name, and stable chunk identifier for filtering, debugging, and citations.",
+      "retrieval_latency_ms": 0.2791000297293067,
+      "retrieval_metrics": {
+        "hit_at_k": 1.0,
+        "k": 5,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "reciprocal_rank": 1.0,
+        "retrieval_passed": true
+      },
+      "retrieved": [
+        {
+          "chunk_id": "transformer-rag-guide-recursive-008",
+          "rank": 1,
+          "score": 0.24459406733512878,
+          "text": "boundary and continues after it. Too much overlap wastes storage and can return repetitive results. Metadata and Citations Every chunk should retain its source document, page range, section name, and stable chunk identifier. Metadata enables filtering, debugging, and citations. A production pipeline may also record timestamps, permissions, language, document type, and checksum information. Well-designed chunking improves retrieval quality before any language model is called. It is therefore both a data-engineering decision and a model-quality decision."
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-002",
+          "rank": 2,
+          "score": 0.07871593534946442,
+          "text": "Keys describe what each token offers, and values carry the information that will be combined. Attention weights decide how strongly the model should use each value. A sentence can contain relationships between words that are far apart. Self-attention creates direct paths between those words, which helps the model capture long-range dependencies. Multi-head attention repeats this process in parallel so different heads can learn different relationships."
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-003",
+          "rank": 3,
+          "score": 0.05582185834646225,
+          "text": "dependencies. Multi-head attention repeats this process in parallel so different heads can learn different relationships. Embeddings Before attention can operate, text is tokenized and converted into numeric identifiers. An embedding layer maps every identifier to a dense vector. Similar language patterns can learn related vector representations during training. Positional information is then added because attention alone does not know the order of tokens."
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-007",
+          "rank": 4,
+          "score": 0.04053734987974167,
+          "text": "best size depends on the document style, embedding model, user questions, and available context window. Overlap copies a small amount of text from one chunk into the next. This helps when an important definition begins near the end of one boundary and continues after it. Too much overlap wastes storage and can return repetitive results."
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-006",
+          "rank": 5,
+          "score": 0.03698871284723282,
+          "text": "can then retrieve the self-attention section instead of an unrelated discussion about deployment or training. Chunk Size and Overlap Small chunks are precise but may lose surrounding explanation. Large chunks contain more context but may combine unrelated ideas. The best size depends on the document style, embedding model, user questions, and available context window."
+        }
+      ],
+      "status": "REVIEW",
+      "used_source_ids": [
+        "transformer-rag-guide-recursive-008"
+      ]
+    }
+  ],
+  "dataset_name": "day19-transformer-rag-eval",
+  "minimum_relevance_score": 0.1,
+  "summary": {
+    "case_count": 5,
+    "failure_counts": {
+      "generation_proxy": 5
+    },
+    "mean_context_token_support": 0.36666666666666664,
+    "mean_pipeline_latency_ms": 0.533560011535883,
+    "mean_precision_at_k": 0.2,
+    "mean_recall_at_k": 1.0,
+    "mean_reciprocal_rank": 0.85,
+    "mean_reference_token_f1": 0.021052631578947368,
+    "mean_retrieval_latency_ms": 0.7955400040373206,
+    "retrieval_hit_rate": 1.0
+  },
+  "top_k": 5
+}

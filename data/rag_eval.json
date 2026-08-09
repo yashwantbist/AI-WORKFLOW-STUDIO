@@ -1,0 +1,63 @@
+{
+  "name": "day19-transformer-rag-eval",
+  "description": "Hand-written cases tied to stable sample chunk IDs.",
+  "cases": [
+    {
+      "case_id": "self-attention-long-range",
+      "question": "How does self-attention help a Transformer capture long-range relationships?",
+      "expected_chunk_ids": [
+        "transformer-rag-guide-recursive-002"
+      ],
+      "reference_answer": "Self-attention creates direct paths between tokens, helping the model capture long-range dependencies.",
+      "tags": [
+        "attention"
+      ]
+    },
+    {
+      "case_id": "query-key-value",
+      "question": "What roles do queries, keys, and values play in self-attention?",
+      "expected_chunk_ids": [
+        "transformer-rag-guide-recursive-001"
+      ],
+      "reference_answer": "Queries represent what a token is looking for, keys describe what each token offers, and values carry the information that attention combines.",
+      "tags": [
+        "attention",
+        "qkv"
+      ]
+    },
+    {
+      "case_id": "why-chunk-documents",
+      "question": "Why should a long document be split into chunks before embedding and retrieval?",
+      "expected_chunk_ids": [
+        "transformer-rag-guide-recursive-005"
+      ],
+      "reference_answer": "A single vector for a long document can hide a small relevant section, while chunking creates focused retrieval units.",
+      "tags": [
+        "chunking"
+      ]
+    },
+    {
+      "case_id": "chunk-overlap",
+      "question": "Why is overlap useful between adjacent document chunks?",
+      "expected_chunk_ids": [
+        "transformer-rag-guide-recursive-007"
+      ],
+      "reference_answer": "Overlap copies some text into the next chunk so an idea crossing a boundary keeps surrounding context.",
+      "tags": [
+        "overlap"
+      ]
+    },
+    {
+      "case_id": "metadata-citations",
+      "question": "What metadata should a chunk keep so a RAG system can trace and cite its source?",
+      "expected_chunk_ids": [
+        "transformer-rag-guide-recursive-008"
+      ],
+      "reference_answer": "Each chunk should retain its source document, page range, section name, and stable chunk identifier for filtering, debugging, and citations.",
+      "tags": [
+        "metadata",
+        "citations"
+      ]
+    }
+  ]
+}
