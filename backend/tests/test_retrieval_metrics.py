@@ -9,48 +9,58 @@ from backend.ml.rag.evaluation.retrieval_metrics import (
 )
 
 
-def test_hit_at_k_present():
-    assert hit_at_k(["a", "expected", "c"], ["expected"], 3) == 1.0
+def test_day20_example_precision_is_60_percent():
+    retrieved = ["c1", "c2", "c7", "c3", "c9"]
+    relevant = {"c1", "c2", "c3", "c4"}
+    assert precision_at_k(retrieved, relevant, 5) == pytest.approx(0.60)
 
 
-def test_hit_at_k_respects_boundary():
-    assert hit_at_k(["a", "b", "expected"], ["expected"], 2) == 0.0
+def test_day20_example_recall_is_75_percent():
+    retrieved = ["c1", "c2", "c7", "c3", "c9"]
+    relevant = {"c1", "c2", "c3", "c4"}
+    assert recall_at_k(retrieved, relevant, 5) == pytest.approx(0.75)
 
 
-def test_recall_multiple_expected():
-    assert recall_at_k(["a", "x"], ["x", "y"], 2) == pytest.approx(0.5)
+def test_empty_retrieval_returns_zero():
+    assert precision_at_k([], {"c1"}, 5) == 0.0
+    assert recall_at_k([], {"c1"}, 5) == 0.0
 
 
-def test_precision():
-    assert precision_at_k(["x", "wrong", "other"], ["x"], 3) == pytest.approx(1 / 3)
+def test_zero_relevant_documents_returns_zero_metrics():
+    assert precision_at_k(["c1"], set(), 1) == 0.0
+    assert recall_at_k(["c1"], set(), 1) == 0.0
+    assert hit_at_k(["c1"], set(), 1) == 0.0
 
 
-def test_precision_short_result_set():
-    assert precision_at_k(["x"], ["x"], 5) == 1.0
+def test_k_larger_than_results_uses_actual_count():
+    assert precision_at_k(["c1", "x"], {"c1"}, 5) == pytest.approx(0.5)
+
+
+def test_duplicates_consume_slots_without_extra_credit():
+    retrieved = ["c1", "c1", "c2"]
+    relevant = {"c1", "c2", "c3"}
+    assert precision_at_k(retrieved, relevant, 3) == pytest.approx(2 / 3)
+    assert recall_at_k(retrieved, relevant, 3) == pytest.approx(2 / 3)
+
+
+def test_structured_result_includes_counts():
+    result = evaluate_retrieval(
+        ["c1", "c1", "wrong", "c2"],
+        {"c1", "c2", "c3"},
+        k=4,
+    )
+    assert result.relevant_retrieved == 2
+    assert result.retrieved_count == 4
+    assert result.total_relevant == 3
+    assert result.duplicate_count == 1
+    assert result.precision_at_k == pytest.approx(0.5)
+    assert result.recall_at_k == pytest.approx(2 / 3)
 
 
 def test_reciprocal_rank():
-    assert reciprocal_rank(["wrong", "x"], ["x"], 2) == pytest.approx(0.5)
-
-
-def test_reciprocal_rank_missing():
-    assert reciprocal_rank(["a", "b"], ["x"], 2) == 0.0
-
-
-def test_combined_metrics():
-    metrics = evaluate_retrieval(["wrong", "x"], ["x"], k=2)
-    assert metrics.hit_at_k == 1.0
-    assert metrics.recall_at_k == 1.0
-    assert metrics.precision_at_k == pytest.approx(0.5)
-    assert metrics.reciprocal_rank == pytest.approx(0.5)
-    assert metrics.retrieval_passed
+    assert reciprocal_rank(["wrong", "c1"], {"c1"}, 2) == pytest.approx(0.5)
 
 
 def test_invalid_k():
     with pytest.raises(ValueError):
-        hit_at_k(["x"], ["x"], 0)
-
-
-def test_empty_expected():
-    with pytest.raises(ValueError):
-        recall_at_k(["x"], [], 1)
+        precision_at_k(["c1"], {"c1"}, 0)
