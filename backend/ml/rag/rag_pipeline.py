@@ -2,12 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Any, Mapping, Protocol
+from typing import Any, Mapping, Protocol, Sequence
 
 from .llm_provider import LLMProvider
 from .prompt_builder import GroundedPromptBuilder
 from .schemas import RAGAnswer, evidence_from_retrieved
-
 
 INSUFFICIENT_CONTEXT_ANSWER = (
     "The available sources do not contain enough information to answer "
@@ -16,8 +15,6 @@ INSUFFICIENT_CONTEXT_ANSWER = (
 
 
 class Retriever(Protocol):
-    """Minimal interface implemented by the Day 17 FaissRetriever."""
-
     def search(
         self,
         query: str,
@@ -25,12 +22,10 @@ class Retriever(Protocol):
         top_k: int = 5,
         filters: Mapping[str, Any] | None = None,
     ) -> tuple[Any, ...]:
-        """Return ranked retrieval results."""
+        ...
 
 
 class RAGPipeline:
-    """Connect retrieval, context augmentation, and LLM generation."""
-
     def __init__(
         self,
         retriever: Retriever,
@@ -48,22 +43,17 @@ class RAGPipeline:
         self._prompt_builder = prompt_builder or GroundedPromptBuilder()
         self._minimum_relevance_score = minimum_relevance_score
 
-    def answer(
-        self,
-        question: str,
-        *,
-        top_k: int = 5,
-        filters: Mapping[str, Any] | None = None,
-        minimum_relevance_score: float | None = None,
-    ) -> RAGAnswer:
-        """Answer a question using only sufficiently relevant retrieved chunks."""
-
+    @staticmethod
+    def _validate_question(question: str) -> str:
         clean_question = question.strip()
         if not clean_question:
             raise ValueError("question cannot be empty")
-        if top_k < 1:
-            raise ValueError("top_k must be at least 1")
+        return clean_question
 
+    def _resolve_threshold(
+        self,
+        minimum_relevance_score: float | None,
+    ) -> float:
         threshold = (
             self._minimum_relevance_score
             if minimum_relevance_score is None
@@ -73,16 +63,47 @@ class RAGPipeline:
             raise ValueError(
                 "minimum_relevance_score must be between -1.0 and 1.0"
             )
+        return threshold
+
+    def answer(
+        self,
+        question: str,
+        *,
+        top_k: int = 5,
+        filters: Mapping[str, Any] | None = None,
+        minimum_relevance_score: float | None = None,
+    ) -> RAGAnswer:
+        clean_question = self._validate_question(question)
+        if top_k < 1:
+            raise ValueError("top_k must be at least 1")
 
         retrieved = self._retriever.search(
             clean_question,
             top_k=top_k,
             filters=filters,
         )
+        return self.answer_from_retrieved(
+            clean_question,
+            retrieved,
+            minimum_relevance_score=minimum_relevance_score,
+        )
+
+    def answer_from_retrieved(
+        self,
+        question: str,
+        retrieved: Sequence[Any],
+        *,
+        minimum_relevance_score: float | None = None,
+    ) -> RAGAnswer:
+        """Generate from a previously computed retrieval result."""
+
+        clean_question = self._validate_question(question)
+        threshold = self._resolve_threshold(minimum_relevance_score)
+        retrieved_items = tuple(retrieved)
 
         evidence = tuple(
             evidence_from_retrieved(result)
-            for result in retrieved
+            for result in retrieved_items
             if float(result.score) >= threshold
         )
 
@@ -92,7 +113,7 @@ class RAGPipeline:
                 sources=(),
                 grounded=False,
                 insufficient_context=True,
-                retrieved_count=len(retrieved),
+                retrieved_count=len(retrieved_items),
                 used_context_count=0,
             )
 
@@ -113,6 +134,6 @@ class RAGPipeline:
             sources=tuple(item.source for item in evidence),
             grounded=True,
             insufficient_context=False,
-            retrieved_count=len(retrieved),
+            retrieved_count=len(retrieved_items),
             used_context_count=len(evidence),
         )
