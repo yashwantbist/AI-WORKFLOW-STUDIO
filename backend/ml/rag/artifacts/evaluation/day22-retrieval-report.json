@@ -1,0 +1,307 @@
+{
+  "dataset_name": "day22-transformer-retrieval-golden-set",
+  "hit_rate_at_k": 1.0,
+  "k": 5,
+  "mean_precision_at_k": 0.32,
+  "mean_recall_at_k": 1.0,
+  "mean_reciprocal_rank": 1.0,
+  "results": [
+    {
+      "matched_relevant_ids": [
+        "transformer-rag-guide-recursive-001"
+      ],
+      "metrics": {
+        "duplicate_count": 0,
+        "hit_at_k": 1.0,
+        "k": 5,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "reciprocal_rank": 1.0,
+        "relevant_retrieved": 1,
+        "retrieval_passed": true,
+        "retrieved_count": 5,
+        "total_relevant": 1
+      },
+      "missed_relevant_ids": [],
+      "query": "What roles do queries, keys, and values play in self-attention?",
+      "query_id": "eval-001",
+      "relevant_ids": [
+        "transformer-rag-guide-recursive-001"
+      ],
+      "retrieval_latency_ms": 0.6843000001026667,
+      "retrieved": [
+        {
+          "chunk_id": "transformer-rag-guide-recursive-001",
+          "rank": 1,
+          "score": 0.23501740396022797
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-002",
+          "rank": 2,
+          "score": 0.1646600365638733
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-005",
+          "rank": 3,
+          "score": 0.12441510707139969
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-006",
+          "rank": 4,
+          "score": 0.0674176961183548
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-003",
+          "rank": 5,
+          "score": 0.03624787926673889
+        }
+      ],
+      "retrieved_ids": [
+        "transformer-rag-guide-recursive-001",
+        "transformer-rag-guide-recursive-002",
+        "transformer-rag-guide-recursive-005",
+        "transformer-rag-guide-recursive-006",
+        "transformer-rag-guide-recursive-003"
+      ]
+    },
+    {
+      "matched_relevant_ids": [
+        "transformer-rag-guide-recursive-002"
+      ],
+      "metrics": {
+        "duplicate_count": 0,
+        "hit_at_k": 1.0,
+        "k": 5,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "reciprocal_rank": 1.0,
+        "relevant_retrieved": 1,
+        "retrieval_passed": true,
+        "retrieved_count": 5,
+        "total_relevant": 1
+      },
+      "missed_relevant_ids": [],
+      "query": "How does self-attention capture relationships between words that are far apart?",
+      "query_id": "eval-002",
+      "relevant_ids": [
+        "transformer-rag-guide-recursive-002"
+      ],
+      "retrieval_latency_ms": 0.23740000006000628,
+      "retrieved": [
+        {
+          "chunk_id": "transformer-rag-guide-recursive-002",
+          "rank": 1,
+          "score": 0.40576428174972534
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-005",
+          "rank": 2,
+          "score": 0.08507975935935974
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-001",
+          "rank": 3,
+          "score": 0.07063198834657669
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-006",
+          "rank": 4,
+          "score": 0.045004911720752716
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-003",
+          "rank": 5,
+          "score": 0.03518996015191078
+        }
+      ],
+      "retrieved_ids": [
+        "transformer-rag-guide-recursive-002",
+        "transformer-rag-guide-recursive-005",
+        "transformer-rag-guide-recursive-001",
+        "transformer-rag-guide-recursive-006",
+        "transformer-rag-guide-recursive-003"
+      ]
+    },
+    {
+      "matched_relevant_ids": [
+        "transformer-rag-guide-recursive-003",
+        "transformer-rag-guide-recursive-004"
+      ],
+      "metrics": {
+        "duplicate_count": 0,
+        "hit_at_k": 1.0,
+        "k": 5,
+        "precision_at_k": 0.4,
+        "recall_at_k": 1.0,
+        "reciprocal_rank": 1.0,
+        "relevant_retrieved": 2,
+        "retrieval_passed": true,
+        "retrieved_count": 5,
+        "total_relevant": 2
+      },
+      "missed_relevant_ids": [],
+      "query": "Why is positional information added when tokens already have embeddings?",
+      "query_id": "eval-003",
+      "relevant_ids": [
+        "transformer-rag-guide-recursive-003",
+        "transformer-rag-guide-recursive-004"
+      ],
+      "retrieval_latency_ms": 0.20009999980175053,
+      "retrieved": [
+        {
+          "chunk_id": "transformer-rag-guide-recursive-004",
+          "rank": 1,
+          "score": 0.23667535185813904
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-003",
+          "rank": 2,
+          "score": 0.2279672771692276
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-001",
+          "rank": 3,
+          "score": 0.08077844232320786
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-005",
+          "rank": 4,
+          "score": 0.07534879446029663
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-002",
+          "rank": 5,
+          "score": 0.0446203351020813
+        }
+      ],
+      "retrieved_ids": [
+        "transformer-rag-guide-recursive-004",
+        "transformer-rag-guide-recursive-003",
+        "transformer-rag-guide-recursive-001",
+        "transformer-rag-guide-recursive-005",
+        "transformer-rag-guide-recursive-002"
+      ]
+    },
+    {
+      "matched_relevant_ids": [
+        "transformer-rag-guide-recursive-005"
+      ],
+      "metrics": {
+        "duplicate_count": 0,
+        "hit_at_k": 1.0,
+        "k": 5,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "reciprocal_rank": 1.0,
+        "relevant_retrieved": 1,
+        "retrieval_passed": true,
+        "retrieved_count": 5,
+        "total_relevant": 1
+      },
+      "missed_relevant_ids": [],
+      "query": "Why can chunking a long document improve retrieval quality?",
+      "query_id": "eval-004",
+      "relevant_ids": [
+        "transformer-rag-guide-recursive-005"
+      ],
+      "retrieval_latency_ms": 0.24679999978616252,
+      "retrieved": [
+        {
+          "chunk_id": "transformer-rag-guide-recursive-005",
+          "rank": 1,
+          "score": 0.22938723862171173
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-008",
+          "rank": 2,
+          "score": 0.1839785873889923
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-004",
+          "rank": 3,
+          "score": 0.07957760989665985
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-006",
+          "rank": 4,
+          "score": 0.06739536672830582
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-002",
+          "rank": 5,
+          "score": 0.051971931010484695
+        }
+      ],
+      "retrieved_ids": [
+        "transformer-rag-guide-recursive-005",
+        "transformer-rag-guide-recursive-008",
+        "transformer-rag-guide-recursive-004",
+        "transformer-rag-guide-recursive-006",
+        "transformer-rag-guide-recursive-002"
+      ]
+    },
+    {
+      "matched_relevant_ids": [
+        "transformer-rag-guide-recursive-006",
+        "transformer-rag-guide-recursive-007",
+        "transformer-rag-guide-recursive-008"
+      ],
+      "metrics": {
+        "duplicate_count": 0,
+        "hit_at_k": 1.0,
+        "k": 5,
+        "precision_at_k": 0.6,
+        "recall_at_k": 1.0,
+        "reciprocal_rank": 1.0,
+        "relevant_retrieved": 3,
+        "retrieval_passed": true,
+        "retrieved_count": 5,
+        "total_relevant": 3
+      },
+      "missed_relevant_ids": [],
+      "query": "What trade-offs should I consider when choosing chunk size and overlap?",
+      "query_id": "eval-005",
+      "relevant_ids": [
+        "transformer-rag-guide-recursive-006",
+        "transformer-rag-guide-recursive-007",
+        "transformer-rag-guide-recursive-008"
+      ],
+      "retrieval_latency_ms": 0.39010000000416767,
+      "retrieved": [
+        {
+          "chunk_id": "transformer-rag-guide-recursive-006",
+          "rank": 1,
+          "score": 0.23884375393390656
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-007",
+          "rank": 2,
+          "score": 0.13046438992023468
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-008",
+          "rank": 3,
+          "score": 0.09314080327749252
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-002",
+          "rank": 4,
+          "score": 0.03564109280705452
+        },
+        {
+          "chunk_id": "transformer-rag-guide-recursive-005",
+          "rank": 5,
+          "score": 0.0
+        }
+      ],
+      "retrieved_ids": [
+        "transformer-rag-guide-recursive-006",
+        "transformer-rag-guide-recursive-007",
+        "transformer-rag-guide-recursive-008",
+        "transformer-rag-guide-recursive-002",
+        "transformer-rag-guide-recursive-005"
+      ]
+    }
+  ],
+  "total_queries": 5
+}

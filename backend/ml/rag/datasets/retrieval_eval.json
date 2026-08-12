@@ -1,0 +1,68 @@
+{
+  "name": "day22-transformer-retrieval-golden-set",
+  "description": "Five manually labelled retrieval cases against the sample Transformers and Retrieval-Augmented Generation chunks.",
+  "cases": [
+    {
+      "id": "eval-001",
+      "query": "What roles do queries, keys, and values play in self-attention?",
+      "relevant_ids": [
+        "transformer-rag-guide-recursive-001"
+      ],
+      "tags": [
+        "direct",
+        "attention",
+        "qkv"
+      ]
+    },
+    {
+      "id": "eval-002",
+      "query": "How does self-attention capture relationships between words that are far apart?",
+      "relevant_ids": [
+        "transformer-rag-guide-recursive-002"
+      ],
+      "tags": [
+        "paraphrase",
+        "attention",
+        "long-range"
+      ]
+    },
+    {
+      "id": "eval-003",
+      "query": "Why is positional information added when tokens already have embeddings?",
+      "relevant_ids": [
+        "transformer-rag-guide-recursive-003",
+        "transformer-rag-guide-recursive-004"
+      ],
+      "tags": [
+        "multi-chunk",
+        "embeddings",
+        "position"
+      ]
+    },
+    {
+      "id": "eval-004",
+      "query": "Why can chunking a long document improve retrieval quality?",
+      "relevant_ids": [
+        "transformer-rag-guide-recursive-005"
+      ],
+      "tags": [
+        "rag",
+        "chunking"
+      ]
+    },
+    {
+      "id": "eval-005",
+      "query": "What trade-offs should I consider when choosing chunk size and overlap?",
+      "relevant_ids": [
+        "transformer-rag-guide-recursive-006",
+        "transformer-rag-guide-recursive-007",
+        "transformer-rag-guide-recursive-008"
+      ],
+      "tags": [
+        "multi-chunk",
+        "chunk-size",
+        "overlap"
+      ]
+    }
+  ]
+}
