@@ -1,0 +1,14 @@
+In backend/ml/rag/evaluation/offline_report.py, inside the per-query failure
+section, add these lines after Recall@K:
+
+(
+    f"Hit@{report.k}: "
+    f"{result.metrics.hit_at_k:.0f}"
+),
+(
+    "Reciprocal rank: "
+    f"{result.metrics.reciprocal_rank:.3f}"
+),
+
+The aggregate report already shows Hit Rate@K and Mean Reciprocal Rank, so do
+not add a second implementation of those metrics.
