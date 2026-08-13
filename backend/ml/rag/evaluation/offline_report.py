@@ -55,28 +55,34 @@ def format_diagnostic_report(
                     f"Status: {result.status.value}",
                     (
                         "Expected: "
-                        + (", ".join(result.relevant_ids) or "(none)")
+                        + (
+                            ", ".join(result.relevant_ids)
+                            or "(none)"
+                        )
                     ),
                     (
                         "Retrieved: "
-                        + (", ".join(result.retrieved_ids) or "(none)")
+                        + (
+                            ", ".join(result.retrieved_ids)
+                            or "(none)"
+                        )
                     ),
                     (
-                        "Matched: "
+                        "Matched relevant IDs: "
                         + (
                             ", ".join(result.matched_relevant_ids)
                             or "(none)"
                         )
                     ),
                     (
-                        "Missed: "
+                        "Missed relevant IDs: "
                         + (
                             ", ".join(result.missed_relevant_ids)
                             or "(none)"
                         )
                     ),
                     (
-                        "Irrelevant retrieved: "
+                        "Irrelevant retrieved IDs: "
                         + (
                             ", ".join(result.irrelevant_retrieved_ids)
                             or "(none)"
@@ -89,6 +95,14 @@ def format_diagnostic_report(
                     (
                         f"Recall@{report.k}: "
                         f"{result.metrics.recall_at_k:.3f}"
+                    ),
+                    (
+                        f"Hit@{report.k}: "
+                        f"{result.metrics.hit_at_k:.0f}"
+                    ),
+                    (
+                        "Reciprocal rank: "
+                        f"{result.metrics.reciprocal_rank:.3f}"
                     ),
                     "-" * 78,
                 ]
@@ -132,6 +146,7 @@ def format_diagnostic_report(
         "These results describe this labelled offline dataset only; "
         "they are not production-traffic metrics."
     )
+
     return "\n".join(lines)
 
 
@@ -141,7 +156,12 @@ def save_json_report(
 ) -> Path:
     """Backward-compatible Day 22 JSON export."""
     output_path = Path(path)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    output_path.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
     output_path.write_text(
         json.dumps(
             report.to_dict(),
@@ -151,6 +171,7 @@ def save_json_report(
         + "\n",
         encoding="utf-8",
     )
+
     return output_path
 
 
@@ -160,6 +181,8 @@ def save_diagnostic_json_report(
     *,
     comparison: BaselineComparison | None = None,
 ) -> Path:
+    """Save evaluation diagnostics and optional baseline comparison."""
+
     payload: dict[str, object] = {
         "evaluation": report.to_dict(),
         "baseline_comparison": (
@@ -170,9 +193,20 @@ def save_diagnostic_json_report(
     }
 
     output_path = Path(path)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    output_path.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
     output_path.write_text(
-        json.dumps(payload, indent=2, sort_keys=True) + "\n",
+        json.dumps(
+            payload,
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
         encoding="utf-8",
     )
+
     return output_path
