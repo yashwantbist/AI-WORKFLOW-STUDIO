@@ -1,0 +1,10 @@
+{
+  "dataset_name": "day22-transformer-retrieval-golden-set",
+  "hit_rate_at_k": 1.0,
+  "k": 5,
+  "mean_precision_at_k": 0.32,
+  "mean_recall_at_k": 1.0,
+  "mean_reciprocal_rank": 1.0,
+  "schema_version": 1,
+  "total_queries": 5
+}

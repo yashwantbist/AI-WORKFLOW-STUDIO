@@ -1,0 +1,3 @@
+Copy the backend folder into the root of AI-WORKFLOW-STUDIO, then run:
+python -m pytest backend/tests/test_tokenization_explorer.py -q
+python -m backend.ml.nlp.tokenizer_demo "Artificial Intelligence is amazing!" --strategy all
