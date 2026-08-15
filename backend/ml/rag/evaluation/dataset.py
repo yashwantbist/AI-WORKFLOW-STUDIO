@@ -7,6 +7,8 @@ import json
 from pathlib import Path
 from typing import Any, Mapping
 
+from .groundedness import GroundednessClaim
+
 
 @dataclass(frozen=True)
 class EvaluationCase:
@@ -15,6 +17,7 @@ class EvaluationCase:
     expected_chunk_ids: tuple[str, ...]
     reference_answer: str
     tags: tuple[str, ...] = ()
+    groundedness_claims: tuple[GroundednessClaim, ...] = ()
 
     def __post_init__(self) -> None:
         if not self.case_id.strip():
@@ -22,22 +25,53 @@ class EvaluationCase:
         if not self.question.strip():
             raise ValueError("question cannot be empty")
         if not self.expected_chunk_ids:
-            raise ValueError("expected_chunk_ids cannot be empty")
+            raise ValueError(
+                "expected_chunk_ids cannot be empty"
+            )
         if not self.reference_answer.strip():
-            raise ValueError("reference_answer cannot be empty")
-        if len(self.expected_chunk_ids) != len(set(self.expected_chunk_ids)):
-            raise ValueError("expected_chunk_ids must be unique")
+            raise ValueError(
+                "reference_answer cannot be empty"
+            )
+        if (
+            len(self.expected_chunk_ids)
+            != len(set(self.expected_chunk_ids))
+        ):
+            raise ValueError(
+                "expected_chunk_ids must be unique"
+            )
 
     @classmethod
-    def from_dict(cls, value: Mapping[str, Any]) -> "EvaluationCase":
+    def from_dict(
+        cls,
+        value: Mapping[str, Any],
+    ) -> "EvaluationCase":
+        raw_claims = value.get(
+            "groundedness_claims",
+            value.get("claims", ()),
+        )
+        if isinstance(raw_claims, (str, bytes)):
+            raise ValueError(
+                "groundedness_claims must be a sequence"
+            )
+
         return cls(
             case_id=str(value["case_id"]),
             question=str(value["question"]),
             expected_chunk_ids=tuple(
-                str(chunk_id) for chunk_id in value["expected_chunk_ids"]
+                str(chunk_id)
+                for chunk_id in value["expected_chunk_ids"]
             ),
-            reference_answer=str(value["reference_answer"]),
-            tags=tuple(str(tag) for tag in value.get("tags", ())),
+            reference_answer=str(
+                value["reference_answer"]
+            ),
+            tags=tuple(
+                str(tag)
+                for tag in value.get("tags", ())
+            ),
+            groundedness_claims=tuple(
+                GroundednessClaim.from_mapping(claim)
+                for claim in raw_claims
+            ),
         )
 
 
@@ -49,20 +83,39 @@ class EvaluationDataset:
 
     def __post_init__(self) -> None:
         if not self.name.strip():
-            raise ValueError("dataset name cannot be empty")
+            raise ValueError(
+                "dataset name cannot be empty"
+            )
         if not self.cases:
-            raise ValueError("dataset must contain at least one case")
-        ids = [case.case_id for case in self.cases]
+            raise ValueError(
+                "dataset must contain at least one case"
+            )
+        ids = [
+            case.case_id
+            for case in self.cases
+        ]
         if len(ids) != len(set(ids)):
-            raise ValueError("case IDs must be unique")
+            raise ValueError(
+                "case IDs must be unique"
+            )
 
     @classmethod
-    def load(cls, path: str | Path) -> "EvaluationDataset":
+    def load(
+        cls,
+        path: str | Path,
+    ) -> "EvaluationDataset":
         path = Path(path)
-        payload = json.loads(path.read_text(encoding="utf-8"))
+        payload = json.loads(
+            path.read_text(encoding="utf-8")
+        )
+
         return cls(
-            name=str(payload.get("name", path.stem)),
-            description=str(payload.get("description", "")),
+            name=str(
+                payload.get("name", path.stem)
+            ),
+            description=str(
+                payload.get("description", "")
+            ),
             cases=tuple(
                 EvaluationCase.from_dict(case)
                 for case in payload["cases"]
