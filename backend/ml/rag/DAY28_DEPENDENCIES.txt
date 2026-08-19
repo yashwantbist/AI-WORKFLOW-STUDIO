@@ -1,0 +1,13 @@
+Day 28 runtime/dev dependencies:
+
+fastapi
+uvicorn
+httpx
+pytest
+
+If they are not already present in your project environment:
+
+python -m pip install fastapi uvicorn httpx pytest
+
+Then add appropriately pinned versions to your project's existing dependency
+management file after verifying compatibility with the current environment.
